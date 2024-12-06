@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.packageID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.postalService)
             </th>
             <th>
@@ -25,13 +28,7 @@
                 @Html.DisplayNameFor(model => model.status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.residentName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.unitNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.email)
+                @Html.DisplayNameFor(model => model.residentID)
             </th>
             <th></th>
         </tr>
@@ -39,6 +36,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.packageID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.postalService)
             </td>
@@ -52,13 +52,7 @@
                 @Html.DisplayFor(modelItem => item.status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.residentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.unitNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
+                @Html.DisplayFor(modelItem => item.residentID)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.packageID">Edit</a> |

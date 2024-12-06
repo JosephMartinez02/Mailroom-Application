@@ -11,7 +11,7 @@ using MvcPackage.Data;
 namespace MailroomApplication.Migrations
 {
     [DbContext(typeof(MvcPackageContext))]
-    [Migration("20241206023310_InitialCreate")]
+    [Migration("20241206052349_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -32,27 +32,18 @@ namespace MailroomApplication.Migrations
                     b.Property<DateTime?>("checkOutDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("email")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("postalService")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("residentID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("residentName")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("status")
+                        .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("unitNumber")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("packageID");
-
-                    b.HasIndex("residentID");
 
                     b.ToTable("Package");
                 });
@@ -112,17 +103,6 @@ namespace MailroomApplication.Migrations
                     b.HasIndex("packageID");
 
                     b.ToTable("Unknown");
-                });
-
-            modelBuilder.Entity("MailroomApplication.Models.Package", b =>
-                {
-                    b.HasOne("MailroomApplication.Models.Resident", "Resident")
-                        .WithMany()
-                        .HasForeignKey("residentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resident");
                 });
 
             modelBuilder.Entity("MailroomApplication.Models.Unknown", b =>

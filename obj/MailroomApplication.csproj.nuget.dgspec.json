@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\MailroomApplication.csproj": {}
+    "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\Mailroom-Application\\MailroomApplication.csproj": {}
   },
   "projects": {
-    "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\MailroomApplication.csproj": {
+    "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\Mailroom-Application\\MailroomApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\MailroomApplication.csproj",
+        "projectUniqueName": "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\Mailroom-Application\\MailroomApplication.csproj",
         "projectName": "MailroomApplication",
-        "projectPath": "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\MailroomApplication.csproj",
+        "projectPath": "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\Mailroom-Application\\MailroomApplication.csproj",
         "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\obj\\",
+        "outputPath": "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\Mailroom-Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"

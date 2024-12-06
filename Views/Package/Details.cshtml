@@ -11,6 +11,12 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.packageID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.packageID)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.postalService)
         </dt>
         <dd class = "col-sm-10">
@@ -35,22 +41,10 @@
             @Html.DisplayFor(model => model.status)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.residentName)
+            @Html.DisplayNameFor(model => model.residentID)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.residentName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.unitNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.unitNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.email)
+            @Html.DisplayFor(model => model.residentID)
         </dd>
     </dl>
 </div>

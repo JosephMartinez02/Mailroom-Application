@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RcNUYYLySDs=",
+  "dgSpecHash": "0uPDOPT+4zE=",
   "success": true,
-  "projectFilePath": "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\MailroomApplication.csproj",
+  "projectFilePath": "c:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\Mailroom-Application\\MailroomApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\leona\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\leona\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

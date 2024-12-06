@@ -12,6 +12,23 @@ namespace MailroomApplication.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Package",
+                columns: table => new
+                {
+                    packageID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    postalService = table.Column<string>(type: "TEXT", nullable: false),
+                    checkInDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    checkOutDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    status = table.Column<string>(type: "TEXT", nullable: false),
+                    residentID = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Package", x => x.packageID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Resident",
                 columns: table => new
                 {
@@ -41,32 +58,6 @@ namespace MailroomApplication.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Package",
-                columns: table => new
-                {
-                    packageID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    postalService = table.Column<string>(type: "TEXT", nullable: true),
-                    checkInDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    checkOutDate = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    status = table.Column<string>(type: "TEXT", nullable: true),
-                    residentName = table.Column<string>(type: "TEXT", nullable: true),
-                    unitNumber = table.Column<int>(type: "INTEGER", nullable: false),
-                    email = table.Column<string>(type: "TEXT", nullable: true),
-                    residentID = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Package", x => x.packageID);
-                    table.ForeignKey(
-                        name: "FK_Package_Resident_residentID",
-                        column: x => x.residentID,
-                        principalTable: "Resident",
-                        principalColumn: "residentID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Unknown",
                 columns: table => new
                 {
@@ -86,11 +77,6 @@ namespace MailroomApplication.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Package_residentID",
-                table: "Package",
-                column: "residentID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Unknown_packageID",
                 table: "Unknown",
                 column: "packageID");
@@ -100,6 +86,9 @@ namespace MailroomApplication.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Resident");
+
+            migrationBuilder.DropTable(
                 name: "Staff");
 
             migrationBuilder.DropTable(
@@ -107,9 +96,6 @@ namespace MailroomApplication.Migrations
 
             migrationBuilder.DropTable(
                 name: "Package");
-
-            migrationBuilder.DropTable(
-                name: "Resident");
         }
     }
 }

@@ -8012,11 +8012,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\MailroomApplication.csproj",
+      "projectUniqueName": "C:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\Mailroom-Application\\MailroomApplication.csproj",
       "projectName": "MailroomApplication",
-      "projectPath": "C:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\MailroomApplication.csproj",
+      "projectPath": "C:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\Mailroom-Application\\MailroomApplication.csproj",
       "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\obj\\",
+      "outputPath": "C:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\Mailroom-Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"

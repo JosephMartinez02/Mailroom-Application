@@ -54,7 +54,7 @@ namespace MailroomApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("packageID,postalService,checkInDate,checkOutDate,status,residentName,unitNumber,email")] Package package)
+        public async Task<IActionResult> Create([Bind("packageID,postalService,checkInDate,checkOutDate,status,residentID")] Package package)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace MailroomApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("packageID,postalService,checkInDate,checkOutDate,status,residentName,unitNumber,email")] Package package)
+        public async Task<IActionResult> Edit(int id, [Bind("packageID,postalService,checkInDate,checkOutDate,status,residentID")] Package package)
         {
             if (id != package.packageID)
             {
