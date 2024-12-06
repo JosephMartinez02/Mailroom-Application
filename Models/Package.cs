@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MailroomApplication.Models;
 
@@ -10,7 +11,7 @@ public class Package
     [Display(Name = "Checked In")]
     public DateTime checkInDate {get; set;}
     [Display(Name = "Checked Out")]
-    public DateTime checkOutDate {get; set;}
+    public DateTime? checkOutDate {get; set;}
     [Display(Name = "Current Status")]
     public string? status {get; set;}
     [Display(Name = "Resident Full Name")]

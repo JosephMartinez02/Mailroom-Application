@@ -8007,25 +8007,24 @@
     ]
   },
   "packageFolders": {
-    "/home/joseph/.nuget/packages/": {}
+    "C:\\Users\\leona\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/joseph/Desktop/Mailroom-Application/MailroomApplication.csproj",
+      "projectUniqueName": "C:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\MailroomApplication.csproj",
       "projectName": "MailroomApplication",
-      "projectPath": "/home/joseph/Desktop/Mailroom-Application/MailroomApplication.csproj",
-      "packagesPath": "/home/joseph/.nuget/packages/",
-      "outputPath": "/home/joseph/Desktop/Mailroom-Application/obj/",
+      "projectPath": "C:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\MailroomApplication.csproj",
+      "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\leona\\Desktop\\JosephMartinezCIDM4360FinalProject\\MailroomApplication\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/joseph/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "/usr/lib/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8042,7 +8041,7 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
       "SdkAnalysisLevel": "9.0.100"
     },
@@ -8094,7 +8093,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
