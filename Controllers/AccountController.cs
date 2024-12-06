@@ -25,7 +25,7 @@ namespace MailroomApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.username, model.password, model.RememberMe ,lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.email, model.password, model.RememberMe ,lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");

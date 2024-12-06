@@ -8,7 +8,7 @@ using MailroomApplication.Models;
 
 namespace MvcPackage.Data
 {
-    public class MvcPackageContext : IdentityDbContext<User>
+    public class MvcPackageContext : DbContext
     {
         public MvcPackageContext (DbContextOptions<MvcPackageContext> options)
             : base(options)
@@ -17,7 +17,7 @@ namespace MvcPackage.Data
 
         public DbSet<MailroomApplication.Models.Package> Package { get; set; } = default!;
         public DbSet<MailroomApplication.Models.Resident> Resident {get; set;} = default!;
-        public DbSet<MailroomApplication.Models.Staff> Staff {get; set;} = default!;
         public DbSet<MailroomApplication.Models.Unknown> Unknown {get; set;} = default!;
+
     }
 }
