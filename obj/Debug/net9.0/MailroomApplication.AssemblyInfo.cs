@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("MailroomApplication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+344be0676d7a0cbc43a513025997d1aebc33543b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db8b5f84d1a6f4a2e5c131f84f71ff5c66163b5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("MailroomApplication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MailroomApplication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
