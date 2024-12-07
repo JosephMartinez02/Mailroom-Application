@@ -27,7 +27,15 @@ namespace MailroomApplication.Data
                         EmailConfirmed = true
                     };
 
-                    await userManager.CreateAsync(user, "alice123");
+                    try{
+                        IdentityResult result = await userManager.CreateAsync(user, "Alice123@wtamu");
+                        if(!result.Succeeded)
+                        foreach(IdentityError error in result.Errors)
+                            Console.WriteLine($"Oops! {error.Description} ({error.Code})");
+                    }
+                    catch{
+
+                    }
 
                     var user2 = new User
                     {
@@ -36,7 +44,15 @@ namespace MailroomApplication.Data
                         EmailConfirmed = true
                     };
 
-                    await userManager.CreateAsync(user2, "bob123");
+                    try{
+                        IdentityResult result = await userManager.CreateAsync(user2, "Bob123@wtamu");
+                        if(!result.Succeeded)
+                        foreach(IdentityError error in result.Errors)
+                            Console.WriteLine($"Oops! {error.Description} ({error.Code})");
+                    }
+                    catch{
+
+                    }
                 }
         }
     }
