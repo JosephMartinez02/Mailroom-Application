@@ -34,8 +34,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="residentID" class="control-label"></label>
-                <input asp-for="residentID" class="form-control" />
-                <span asp-validation-for="residentID" class="text-danger"></span>
+                <select asp-for="residentID" class ="form-control" asp-items="ViewBag.residentID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

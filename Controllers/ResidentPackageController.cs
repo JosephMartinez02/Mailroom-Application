@@ -10,23 +10,23 @@ using MvcPackage.Data;
 
 namespace MailroomApplication.Controllers
 {
-    public class UnknownController : Controller
+    public class ResidentPackageController : Controller
     {
         private readonly MvcPackageContext _context;
 
-        public UnknownController(MvcPackageContext context)
+        public ResidentPackageController(MvcPackageContext context)
         {
             _context = context;
         }
 
-        // GET: Unknown
+        // GET: ResidentPackage
         public async Task<IActionResult> Index()
         {
-            var mvcPackageContext = _context.Unknown.Include(u => u.Package);
+            var mvcPackageContext = _context.ResidentPackage.Include(r => r.Package).Include(r => r.Resident);
             return View(await mvcPackageContext.ToListAsync());
         }
 
-        // GET: Unknown/Details/5
+        // GET: ResidentPackage/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +34,45 @@ namespace MailroomApplication.Controllers
                 return NotFound();
             }
 
-            var unknown = await _context.Unknown
-                .Include(u => u.Package)
-                .FirstOrDefaultAsync(m => m.unknownID == id);
-            if (unknown == null)
+            var residentPackage = await _context.ResidentPackage
+                .Include(r => r.Package)
+                .Include(r => r.Resident)
+                .FirstOrDefaultAsync(m => m.residentID == id);
+            if (residentPackage == null)
             {
                 return NotFound();
             }
 
-            return View(unknown);
+            return View(residentPackage);
         }
 
-        // GET: Unknown/Create
+        // GET: ResidentPackage/Create
         public IActionResult Create()
         {
             ViewData["packageID"] = new SelectList(_context.Package, "packageID", "postalService");
+            ViewData["residentID"] = new SelectList(_context.Resident, "residentID", "email");
             return View();
         }
 
-        // POST: Unknown/Create
+        // POST: ResidentPackage/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("unknownID,packageID")] Unknown unknown)
+        public async Task<IActionResult> Create([Bind("residentID,packageID")] ResidentPackage residentPackage)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(unknown);
+                _context.Add(residentPackage);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["packageID"] = new SelectList(_context.Package, "packageID", "postalService", unknown.packageID);
-            return View(unknown);
+            ViewData["packageID"] = new SelectList(_context.Package, "packageID", "postalService", residentPackage.packageID);
+            ViewData["residentID"] = new SelectList(_context.Resident, "residentID", "email", residentPackage.residentID);
+            return View(residentPackage);
         }
 
-        // GET: Unknown/Edit/5
+        // GET: ResidentPackage/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +80,24 @@ namespace MailroomApplication.Controllers
                 return NotFound();
             }
 
-            var unknown = await _context.Unknown.FindAsync(id);
-            if (unknown == null)
+            var residentPackage = await _context.ResidentPackage.FindAsync(id);
+            if (residentPackage == null)
             {
                 return NotFound();
             }
-            ViewData["packageID"] = new SelectList(_context.Package, "packageID", "postalService", unknown.packageID);
-            return View(unknown);
+            ViewData["packageID"] = new SelectList(_context.Package, "packageID", "postalService", residentPackage.packageID);
+            ViewData["residentID"] = new SelectList(_context.Resident, "residentID", "email", residentPackage.residentID);
+            return View(residentPackage);
         }
 
-        // POST: Unknown/Edit/5
+        // POST: ResidentPackage/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("unknownID,packageID")] Unknown unknown)
+        public async Task<IActionResult> Edit(int id, [Bind("residentID,packageID")] ResidentPackage residentPackage)
         {
-            if (id != unknown.unknownID)
+            if (id != residentPackage.residentID)
             {
                 return NotFound();
             }
@@ -102,12 +106,12 @@ namespace MailroomApplication.Controllers
             {
                 try
                 {
-                    _context.Update(unknown);
+                    _context.Update(residentPackage);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UnknownExists(unknown.unknownID))
+                    if (!ResidentPackageExists(residentPackage.residentID))
                     {
                         return NotFound();
                     }
@@ -118,11 +122,12 @@ namespace MailroomApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["packageID"] = new SelectList(_context.Package, "packageID", "postalService", unknown.packageID);
-            return View(unknown);
+            ViewData["packageID"] = new SelectList(_context.Package, "packageID", "postalService", residentPackage.packageID);
+            ViewData["residentID"] = new SelectList(_context.Resident, "residentID", "email", residentPackage.residentID);
+            return View(residentPackage);
         }
 
-        // GET: Unknown/Delete/5
+        // GET: ResidentPackage/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,35 +135,36 @@ namespace MailroomApplication.Controllers
                 return NotFound();
             }
 
-            var unknown = await _context.Unknown
-                .Include(u => u.Package)
-                .FirstOrDefaultAsync(m => m.unknownID == id);
-            if (unknown == null)
+            var residentPackage = await _context.ResidentPackage
+                .Include(r => r.Package)
+                .Include(r => r.Resident)
+                .FirstOrDefaultAsync(m => m.residentID == id);
+            if (residentPackage == null)
             {
                 return NotFound();
             }
 
-            return View(unknown);
+            return View(residentPackage);
         }
 
-        // POST: Unknown/Delete/5
+        // POST: ResidentPackage/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var unknown = await _context.Unknown.FindAsync(id);
-            if (unknown != null)
+            var residentPackage = await _context.ResidentPackage.FindAsync(id);
+            if (residentPackage != null)
             {
-                _context.Unknown.Remove(unknown);
+                _context.ResidentPackage.Remove(residentPackage);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UnknownExists(int id)
+        private bool ResidentPackageExists(int id)
         {
-            return _context.Unknown.Any(e => e.unknownID == id);
+            return _context.ResidentPackage.Any(e => e.residentID == id);
         }
     }
 }

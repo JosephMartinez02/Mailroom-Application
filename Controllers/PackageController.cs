@@ -22,7 +22,8 @@ namespace MailroomApplication.Controllers
         // GET: Package
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Package.ToListAsync());
+            var mvcPackageContext = _context.Package.Include(p => p.Resident);
+            return View(await mvcPackageContext.ToListAsync());
         }
 
         // GET: Package/Details/5
@@ -34,6 +35,7 @@ namespace MailroomApplication.Controllers
             }
 
             var package = await _context.Package
+                .Include(p => p.Resident)
                 .FirstOrDefaultAsync(m => m.packageID == id);
             if (package == null)
             {
@@ -46,6 +48,7 @@ namespace MailroomApplication.Controllers
         // GET: Package/Create
         public IActionResult Create()
         {
+            ViewData["residentID"] = new SelectList(_context.Resident, "residentID", "residentName");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace MailroomApplication.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["residentID"] = new SelectList(_context.Resident, "residentID", "residentName", package.residentID);
             return View(package);
         }
 
@@ -78,6 +82,7 @@ namespace MailroomApplication.Controllers
             {
                 return NotFound();
             }
+            ViewData["residentID"] = new SelectList(_context.Resident, "residentID", "email", package.residentID);
             return View(package);
         }
 
@@ -113,6 +118,7 @@ namespace MailroomApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["residentID"] = new SelectList(_context.Resident, "residentID", "email", package.residentID);
             return View(package);
         }
 
@@ -125,6 +131,7 @@ namespace MailroomApplication.Controllers
             }
 
             var package = await _context.Package
+                .Include(p => p.Resident)
                 .FirstOrDefaultAsync(m => m.packageID == id);
             if (package == null)
             {

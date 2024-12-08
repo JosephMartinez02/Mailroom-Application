@@ -16,4 +16,6 @@ public class Resident
     [Required]
     [Display(Name = "Unit #")]
     public int unitNumber {get; set;}
+    public List<Package> Packages {get; set;} = [];
+    public List<ResidentPackage> ResidentPackages {get; set;} = [];
 }

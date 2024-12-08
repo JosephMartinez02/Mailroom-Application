@@ -54,7 +54,7 @@ namespace MailroomApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("residentID,residentName,unitNumber,email")] Resident resident)
+        public async Task<IActionResult> Create([Bind("residentID,residentName,email,unitNumber")] Resident resident)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace MailroomApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("residentID,residentName,unitNumber,email")] Resident resident)
+        public async Task<IActionResult> Edit(int id, [Bind("residentID,residentName,email,unitNumber")] Resident resident)
         {
             if (id != resident.residentID)
             {

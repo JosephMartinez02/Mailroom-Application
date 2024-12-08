@@ -22,7 +22,9 @@ public class Package
     [Display(Name = "Current Status")]
     [Required]
     public string status {get; set;} = default!;
-    [Display(Name = "Resident ID #")]
-    [Required]
+    [Display(Name = "Resident Name")]
     public int residentID {get; set;}
+    public Resident Resident {get; set;} = default!;
+    public List<ResidentPackage> ResidentPackages {get; set;} = [];
+    public List<Unknown> Unknowns {get; set;} = [];
 }
