@@ -24,7 +24,7 @@ public class Package
     public string status {get; set;} = default!;
     [Display(Name = "Resident Name")]
     public int residentID {get; set;}
-    public Resident Resident {get; set;} = default!;
+    public virtual Resident? Resident {get; set;}
     public List<ResidentPackage> ResidentPackages {get; set;} = [];
     public List<Unknown> Unknowns {get; set;} = [];
 }
