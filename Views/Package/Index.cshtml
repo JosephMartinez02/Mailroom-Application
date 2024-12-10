@@ -1,75 +1,108 @@
+@* update Index.cshtml *@
 @model IEnumerable<MailroomApplication.Models.Package>
 
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1>Index</h1>
+@{
+    var normalPackages = ViewData["NormalPackages"] as List<MailroomApplication.Models.Package>;
+    var unknownPackages = ViewData["UnknownPackages"] as List<MailroomApplication.Models.Package>;
+    var searchString = ViewData["SearchString"] as string;
+}
+<h1 style="text-align:center">Packages</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<form asp-action="Search" method="get" class="form-inline mb-3">
-    <input type="text" name="residentName" value="@ViewBag.ResidentName" placeholder="Search by Resident Name" class="form-control mr-2" />
-    <button type="submit" class="btn btn-primary">Search</button>
+<br>
+
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <input type="text" name="searchString" class="form-control"
+            placeholder="Search Normal Packages by Resident Name" value="@searchString" />
+        <button type="submit" class="btn btn-primary mt-2">Search</button>
+    </div>
 </form>
+
+<h2>Resident Packages</h2>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.packageID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.postalService)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.checkInDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.checkOutDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resident.residentName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resident.unitNumber)
-            </th>
-            <th></th>
+            <th>Package #</th>
+            <th>Postal Service</th>
+            <th>Check-In Date</th>
+            <th>Check-Out Date</th>
+            <th>Status</th>
+            <th>Resident</th>
+            <th>Unit #</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @if (normalPackages != null && normalPackages.Any())
+        {
+            @foreach (var item in normalPackages)
+            {
+                <tr>
+                    <td>@item.packageID</td>
+                    <td>@item.postalService</td>
+                    <td>@item.checkInDate.ToShortDateString()</td>
+                    <td>@Html.DisplayFor(modelItem => item.checkOutDate, "{0:MM/dd/yyyy}", new { @class = "form-control default-date-picker" })</td>
+                    <td>@item.status</td>
+                    <td>@item.Resident?.residentName</td>
+                    <td>@item.Resident?.unitNumber</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.packageID">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@item.packageID">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.packageID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">No normal packages found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Unknown Packages Section -->
+<h2>Unknown Packages</h2>
+<table class="table">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.packageID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.postalService)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.checkInDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.checkOutDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Resident.residentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Resident.unitNumber)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.packageID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.packageID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.packageID">Delete</a>
-            </td>
+            <th>Package #</th>
+            <th>Postal Service</th>
+            <th>Check-In Date</th>
+            <th>Check-Out Date</th>
+            <th>Status</th>
+            <th>Actions</th>
         </tr>
-}
+    </thead>
+    <tbody>
+        @if (unknownPackages != null && unknownPackages.Any())
+        {
+            @foreach (var item in unknownPackages)
+            {
+                <tr>
+                    <td>@item.packageID</td>
+                    <td>@item.postalService</td>
+                    <td>@item.checkInDate.ToShortDateString()</td>
+                    <td>@Html.DisplayFor(modelItem => item.checkOutDate, "{0:MM/dd/yyyy}", new { @class = "form-control default-date-picker" })</td>
+                    <td>@item.status</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.packageID">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@item.packageID">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.packageID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">No unknown packages found.</td>
+            </tr>
+        }
     </tbody>
 </table>

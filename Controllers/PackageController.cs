@@ -22,12 +22,43 @@ namespace MailroomApplication.Controllers
             _context = context;
         }
 
+        
+        // GET: Package, show normal and unknown packages on two sections
         // GET: Package
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var mvcPackageContext = _context.Package.Include(p => p.Resident);
-            return View(await mvcPackageContext.ToListAsync());
+            // Fetch all packages and include related data
+            var packagesQuery = _context.Package.Include(p => p.Resident);
+
+            // Load all packages into memory
+            var packages = await packagesQuery.ToListAsync();
+
+            // Separate packages into normal and unknown categories
+            var normalPackages = packages
+                .Where(p => !p.status.ToUpper().Contains("UNKNOWN"))
+                .ToList();
+
+            var unknownPackages = packages
+                .Where(p => p.status.ToUpper().Contains("UNKNOWN"))
+                .ToList();
+
+            // Apply search filter only to normal packages
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                normalPackages = normalPackages
+                    .Where(p => p.Resident != null && 
+                                p.Resident.residentName.ToUpper().Contains(searchString.ToUpper()))
+                    .ToList();
+            }
+
+            // Pass the data to the view using ViewData
+            ViewData["NormalPackages"] = normalPackages;
+            ViewData["UnknownPackages"] = unknownPackages;
+            ViewData["SearchString"] = searchString; // To maintain the search input
+
+            return View(packages); // Return the full list for potential compatibility
         }
+
 
         public async Task<IActionResult> Search(string? residentName)
         {
@@ -80,6 +111,24 @@ namespace MailroomApplication.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["residentID"] = new SelectList(_context.Resident, "residentID", "residentName", package.residentID);
+            // ViewData["status"] = new SelectList( new List<SelectListItem>
+            // {
+            //     new SelectListItem
+            //     {
+            //         Text = "Pending",
+            //         Value = "Pending"
+            //     },
+            //     new SelectListItem
+            //     {
+            //         Text = "Delivered",
+            //         Value = "Delivered"
+            //     },
+            //     new SelectListItem
+            //     {
+            //         Text = "Unknown",
+            //         Value = "Unknown"
+            //     }
+            // }, _context.Package, "status", "status", package.status);
             return View(package);
         }
 

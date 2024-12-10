@@ -23,21 +23,12 @@
                     <ul class="navbar-nav nl-auto">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             <a class="navbar-brand" asp-controller="Package" asp-action="Index">Packages</a>
                             <a class="navbar-brand" asp-controller="Resident" asp-action="Index">Residents</a>
-                            <a class="navbar-brand" asp-controller="Unknown" asp-action="Index">Unknown</a>
-
                             <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post">
                                 <button type="submit" class="btn btn-link navbar-brand">Logout</button>
                             </form>
 
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
                         }
                     </ul>
                 </div>
