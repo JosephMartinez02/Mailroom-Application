@@ -8,5 +8,5 @@ public class Unknown
     public int unknownID {get; set;}
     [Display(Name = "Package #")]
     public int packageID {get; set;}
-    public Package Package {get; set;} = null!;
+    public virtual Package? Package {get; set;}
 }

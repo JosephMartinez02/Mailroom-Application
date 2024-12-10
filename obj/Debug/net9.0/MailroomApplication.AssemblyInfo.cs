@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MailroomApplication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+696ff0f03c77bb6135707e6f1673576fd867e88e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99dcf680dd279f1243ecf2a744197d53edc25898")]
 [assembly: System.Reflection.AssemblyProductAttribute("MailroomApplication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MailroomApplication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

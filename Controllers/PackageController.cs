@@ -29,21 +29,14 @@ namespace MailroomApplication.Controllers
             return View(await mvcPackageContext.ToListAsync());
         }
 
-        public async Task<IActionResult> Search(string searchString)
+        public async Task<IActionResult> Search(string? residentName)
         {
-            if (_context.Resident == null)
-            {
-                return Problem("Entity set 'MvcPackageContext.Resident' is null");
-            }
-
-            var residents = from r in _context.Resident
-                            select r;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                residents = residents.Where(s => s.residentName!.ToUpper().Contains(searchString.ToUpper()));
-            }
-            return View(await residents.ToListAsync());
+            var packages = _context.Package.Include(p => p.Resident)
+                .Where(p => string.IsNullOrEmpty(residentName) || p.Resident.residentName.Contains(residentName))
+                .ToList();
+            
+            ViewBag.ResidentName = residentName;
+            return View("Index", packages);
         }
 
         // GET: Package/Details/5
@@ -83,6 +76,7 @@ namespace MailroomApplication.Controllers
             {
                 _context.Add(package);
                 await _context.SaveChangesAsync();
+                SendEmail();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["residentID"] = new SelectList(_context.Resident, "residentID", "residentName", package.residentID);
@@ -181,17 +175,14 @@ namespace MailroomApplication.Controllers
             return _context.Package.Any(e => e.packageID == id);
         }
 
-        public async Task<IActionResult> SendEmail()
+        public static void SendEmail()
         {
             try
             {
-                var residents = from r in _context.Resident
-                            select r;
-
                 string senderEmail = "noreply@buffteks.org";
                 string password = "cidm4360fall2024@*";
-                var toEmail = residents.Select(e => e.email).ToString()!;
-                string subject = "Package Delivered!";
+                var toEmail = "jamartinez15@buffs.wtamu.edu";
+                string subject = "Package Ready for Pickup!";
                 // Create the email message
                 MailMessage message = new MailMessage();
                 message.From = new MailAddress(senderEmail); // Set the sender's email address
@@ -224,13 +215,11 @@ namespace MailroomApplication.Controllers
                 // Send the email
                 smtpClient.Send(message);
                 Console.WriteLine("Email sent successfully!");
-                return View(await residents.ToListAsync());
             }
             catch (Exception ex)
             {
                 // Catch any exceptions that occur and display an error message
                 Console.WriteLine($"Failed to send email: {ex.Message}");
-                return NotFound();
             }
         }
 

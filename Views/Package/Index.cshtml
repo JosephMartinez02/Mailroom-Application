@@ -9,11 +9,9 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<form asp-controller="Package" asp-action="Index" method="get">
-    <p>
-        <label>Search: <input type="text" name="SearchString" /></label>
-        <input type="submit" value="Filter" />
-    </p>
+<form asp-action="Search" method="get" class="form-inline mb-3">
+    <input type="text" name="residentName" value="@ViewBag.ResidentName" placeholder="Search by Resident Name" class="form-control mr-2" />
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
 <table class="table">
     <thead>
@@ -70,7 +68,6 @@
                 <a asp-action="Edit" asp-route-id="@item.packageID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.packageID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.packageID">Delete</a>
-                <a asp-controller="Package" asp-action="Index" name="SendEmail">E-Mail</a>
             </td>
         </tr>
 }

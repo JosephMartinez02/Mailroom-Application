@@ -22,7 +22,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                @if(item.Package.status == "Unknown"){
+                @if(item.Package!.status.ToUpper().Contains("unknown".ToUpper())){
                     <td>
                         @Html.DisplayFor(modelItem => item.Package.packageID)
                     </td>
